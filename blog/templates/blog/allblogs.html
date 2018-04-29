@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Portfolio of Bhudev</title>
+    <title>Blogs of Bhudev</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -27,48 +27,38 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+       <a class="nav-item nav-link " href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="{% static 'cv_updated.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link active" href="#">Blog</a>
     </div>
   </div>
 </nav>
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Hi Bhudev here !!!</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-            <a href="mailto:yadavbhudev11@gmail.com" class="btn btn-primary my-2">Email Me</a>
-            <a href="#" class="btn btn-secondary my-2">Contact</a>
-          </p>
-          <img src="{% static 'dev.jpg'%}" height=200 width=150>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
+    <div class="container">
+     <h1 class="text-center pt-3">Welcome to Bhudev's Blog</h1>
+     <br />
+     <br />
+     <h2>Latest Posts</h2> 
+     <hr />
+     </div>   
+     
+     <div class="blogs py-5 bg-light">
         <div class="container">
          
-          <div class="row">
-          {%for job in jobs.all %}  
-            <div class="col-md-4 " >
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{{ job.image.url }}">
-                <div class="card-body">
-                  <p class="card-text">{{job.summary}}</p>
-                  
-                </div>
-              </div>
-            </div>
+          
+          {%for blog in blogs.all %}  
+          
+           <a href="{% url 'detail' blog.id %}">  <h3>{{blog.title}}</h3></a>  
+           <p>{{blog.pub_dat}}</p>
+           <br />
+            <img class="image-fluid" src="{{blog.image.url}}" height=100 width=200/>
+            <br />
+            
+            <p>{{blog.summary}}</p>
+            
           {% endfor %} 
-            </div>
-          </div>
-        </div>
-      </div>
-
     </main>
 
     <footer class="text-muted">
